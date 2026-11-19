@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice Cover Studio — GTA-style cover art maker</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<main class="app">
+  <section class="controls" aria-label="Cover controls">
+    <h1>Vice Cover <span>Studio</span></h1>
+    <p class="tagline">Your photos, your caption — a multi-panel poster in the Vice City sunset style. Everything runs on your machine; no photo is ever uploaded.</p>
+
+    <fieldset>
+      <legend>1 · Photos</legend>
+      <div class="slots" id="slots"></div>
+      <label class="file-label">Add a photo
+        <input id="photo" type="file" accept="image/*">
+      </label>
+      <div class="row">
+        <button id="sample-boulevard" type="button" class="ghost">Sample: boulevard</button>
+        <button id="sample-pier" type="button" class="ghost">Sample: pier</button>
+        <button id="sample-street" type="button" class="ghost">Sample: street</button>
+      </div>
+      <label>Zoom <input id="zoom" type="range" min="1" max="2.5" step="0.01" value="1"></label>
+      <label>Move sideways <input id="panx" type="range" min="-0.5" max="0.5" step="0.01" value="0"></label>
+      <label>Move up / down <input id="pany" type="range" min="-0.5" max="0.5" step="0.01" value="0"></label>
+      <p class="hint">Pick a photo slot above, then crop it with the sliders. One photo can fill several panels.</p>
+    </fieldset>
+
+    <fieldset>
+      <legend>2 · Layout &amp; grade</legend>
+      <div class="row" id="layouts" role="group" aria-label="Layout">
+        <button type="button" data-layout="sunset-strip" class="seg active">Sunset Strip</button>
+        <button type="button" data-layout="four-corners" class="seg">Four Corners</button>
+        <button type="button" data-layout="skyline" class="seg">Skyline</button>
+      </div>
+      <div class="row" id="grades" role="group" aria-label="Colour grade">
+        <button type="button" data-grade="sunset" class="seg active">Sunset Vice</button>
+        <button type="button" data-grade="neon" class="seg">Neon Nights</button>
+        <button type="button" data-grade="dusk" class="seg">Palm Dusk</button>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>3 · Caption</legend>
+      <label>Title <input id="caption" type="text" maxlength="32" value="VICE CITY"></label>
+      <label>Subtitle <input id="subtitle" type="text" maxlength="48" value="one last ride"></label>
+    </fieldset>
+
+    <fieldset>
+      <legend>4 · Export</legend>
+      <div class="row" id="sizes" role="group" aria-label="Export size">
+        <button type="button" data-size="1080x1080" class="seg active">1080 × 1080</button>
+        <button type="button" data-size="1080x1350" class="seg">1080 × 1350</button>
+        <button type="button" data-size="1920x1080" class="seg">1920 × 1080</button>
+      </div>
+      <button id="export" type="button" class="primary">Export PNG</button>
+      <p id="status" role="status"></p>
+    </fieldset>
+  </section>
+  <section class="stage" aria-label="Live preview">
+    <canvas id="cover" width="1080" height="1080"></canvas>
+    <p class="stage-note">Live preview — what you see is what exports.</p>
+  </section>
+</main>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
